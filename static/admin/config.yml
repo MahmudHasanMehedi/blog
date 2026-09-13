@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: yourusername/yourrepo
+  branch: main
+
+# Uses Netlify's free Git Gateway / Identity for GitHub OAuth.
+# See setup notes in README-BLOG-SETUP.md before this works.
+
+publish_mode: simple
+media_folder: "static/images/posts"
+public_folder: "/images/posts"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - label: "Category"
+        name: "categories"
+        widget: "select"
+        options: ["space", "cybersecurity", "random"]
+        multiple: true
+        min: 1
+        max: 1
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Summary", name: "summary", widget: "text", required: false }
+      - { label: "Cover Image", name: "cover", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
